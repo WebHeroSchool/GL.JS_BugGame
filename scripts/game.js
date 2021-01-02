@@ -17,6 +17,8 @@ const settings = {
         "line": 2
     }
 };
+let isFlipped = 0;
+let cardBug;
 
 function getSettingLevel() {
     return (
@@ -28,6 +30,7 @@ function startGame() {
     const level_settings = getSettingLevel();
 
     spreadCards(level_settings.card, level_settings.line);
+    cardBug = getRandomInt(0, level_settings.card);
     game.classList.remove('hidden');
     game_menu.classList.add("hidden");
 }
@@ -45,7 +48,6 @@ function spreadCards(card, line) {
     let gameCardBackImg;
     let gameCardFront;
     let gameCardFrontImg;
-    let cardBug = getRandomInt(0, card);
     let cardInLine = card / line
 
     gameLine = document.createElement('div');
@@ -53,6 +55,7 @@ function spreadCards(card, line) {
 
     for (let c = 0; c <= card; c++) {
         gameCard = document.createElement('div');
+        gameCard.setAttribute('value', c);
         gameCard.classList.add('game__card');
         gameCard.classList.add('game__card_hov');
         gameCard.addEventListener("click", flipCard(gameCard), { once: true });
@@ -68,12 +71,7 @@ function spreadCards(card, line) {
         gameCardFront = document.createElement('div');
         gameCardFront.classList.add('game__card_front');
         gameCardFrontImg = document.createElement('img');
-        if (c === cardBug) {
-            gameCardFrontImg.src = 'images/card_bug.png';
-            gameCard.setAttribute('value', 1);
-        } else {
-            gameCardFrontImg.src = 'images/card_game_over.png';
-        }
+        gameCardFrontImg.src = 'images/card_game_over.png';
         gameCardFrontImg.alt = 'Лицо';
 
         // Собираем карту
@@ -90,14 +88,26 @@ function spreadCards(card, line) {
 
         gameLine.appendChild(gameCard);
     }
-    console.log(game_board);
-}
+};
 
 function flipCard(gameCard) {
+
     return function() {
-        gameCard.classList.toggle("rotate");
-        gameCard.classList.remove("game__card_hov");
-        gameCard.addEventListener("click", RestartGame());
+        if (isFlipped === 0) {
+            if (gameCard.getAttribute('value') == cardBug) {
+                let gameCardFrontImg = gameCard.querySelector('.game__card_front > img');
+                gameCardFrontImg.src = 'images/card_bug.png';
+            };
+
+            let arrCard = document.body.getElementsByClassName('game__card');
+            [].forEach.call(arrCard, element => {
+                element.classList.remove("game__card_hov");
+            });
+
+            gameCard.classList.toggle("rotate");
+            gameCard.addEventListener("click", RestartGame());
+            isFlipped = 1;
+        };
     };
 }
 
