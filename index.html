@@ -1,0 +1,40 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BugGame</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div id="game_menu" class="menu">
+            <h1 class="menu__title">
+                Выберите уровень сложности:
+            </h1>
+            <h2 class="menu__subtitle">
+                Выберите сложность и игра начнется. Чем выше уровень - тем больше будет выборка карт.
+            </h2>
+            <form class="menu__list">
+                <input class="menu__item" type="radio" id="easy" name="level_group" value="easy" checked>
+                <label for="easy">Простой</label>
+                <input class="menu__item" type="radio" id="middle" name="level_group" value="middle">
+                <label for="middle">Средний</label>
+                <input class="menu__item" type="radio" id="hard" name="level_group" value="hard">
+                <label for="hard">Сложный</label>
+                <input id="start_game" class="menu__button" type="button" value="Начать игру">
+            </form>
+            <div class="menu__card"></div>
+        </div>
+
+        <div id="game" class="game hidden">
+            <div id="game_board" class="game__board">
+            </div>
+        </div>
+
+        <script src="./scripts/game.js"></script>
+</body>
+
+</html>
