@@ -1,0 +1,190 @@
+body {
+    margin: 0;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+    background: url('../images/background.jpg');
+    background-size: cover;
+}
+
+.menu {
+    color: #ffffff;
+    overflow: hidden;
+    width: fit-content;
+    font-family: 'Roboto';
+    overflow: hidden;
+    padding-left: 112px;
+    padding-top: 142px;
+}
+
+.menu__title {
+    font-weight: bold;
+    font-size: 60px;
+    letter-spacing: 1.95px;
+    margin: 0px 0px 10px 0px;
+}
+
+.menu__subtitle {
+    font-size: 19.85px;
+    letter-spacing: 0.8px;
+    word-spacing: -1.1px;
+    margin: 0px 0px 0px 3px;
+}
+
+.menu__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    padding: 68px 0px 0px 2px;
+}
+
+.menu__list label {
+    width: fit-content;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 55px;
+    margin-bottom: 27px;
+}
+
+.menu__item:checked::before,
+input[type="radio"] {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    clip: rect(0 0 0 0);
+}
+
+.menu__item:checked,
+input[type="radio"]+label::before {
+    content: url('../images/rectangle.png');
+    opacity: 0;
+    margin-right: 27px;
+    vertical-align: middle;
+}
+
+input[type="radio"]:checked+label:before {
+    content: url('../images/rectangle.png');
+    margin-right: 27px;
+    opacity: 1;
+    vertical-align: middle;
+}
+
+.menu__button {
+    background: #D62B2E;
+    border: 1px solid transparent;
+    font-family: 'Roboto';
+    border-radius: 9px;
+    color: #ffffff;
+    height: 106px;
+    margin-top: 98px;
+    font-size: 36px;
+    max-width: 386px;
+    box-shadow: 6px 6px 6px -4px #000000;
+    cursor: pointer;
+    outline: none;
+}
+
+.menu__button:hover {
+    transform: translate(3px, 3px);
+}
+
+.menu__card {
+    position: absolute;
+    background-color: #ffffff;
+    background: url(../images/card_front.png) no-repeat top 10px right, url(../images/card_back.png) no-repeat;
+    width: 520px;
+    height: 450px;
+    top: 55%;
+    right: 7%;
+}
+
+
+/*
+Игра
+*/
+
+.game {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game__board {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+}
+
+.game__line {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.game__card {
+    position: relative;
+    transition: 0.5s;
+    transform-style: preserve-3d;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+    margin: 10px;
+}
+
+.game__card_front {
+    transform: rotateY(180deg);
+}
+
+.game__card_front img,
+.game__card_back img {
+    width: 100%;
+}
+
+.rotate {
+    transform: rotateY(180deg);
+}
+
+.game__card_back {
+    position: absolute;
+    backface-visibility: hidden;
+}
+
+.game__card_hov:hover {
+    transform: translateY(-30px) rotateZ(-3deg);
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width:1100px) {
+    .menu__card {
+        display: none;
+    }
+}
+
+@media (max-width:580px) {
+    .menu {
+        padding-left: 5%;
+    }
+    .menu__title {
+        font-size: 30px;
+        line-height: 37px;
+    }
+    .menu__list label {
+        font-size: 2vh;
+    }
+    .menu__button {
+        max-width: 65%;
+        font-size: 2vh;
+    }
+}
